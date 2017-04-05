@@ -7,7 +7,8 @@ ARG APK_PACKAGES
 
 ENV UID="991" \
     GID="991" \
-    CADDY_SRC_URL="https://caddyserver.com/download/build?os=linux&arch=amd64&features=$CADDY_FEATURES"
+    CADDY_SRC_URL="https://caddyserver.com/download/build?os=linux&arch=amd64&features=$CADDY_FEATURES" \
+    CADDYPATH="/srv/config/ssl"
 
 RUN apk add --no-cache curl libcap su-exec tini $APK_PACKAGES \
     ## Download Caddy
@@ -23,7 +24,7 @@ RUN apk add --no-cache curl libcap su-exec tini $APK_PACKAGES \
     && rm -rf /tmp/caddy
 
 COPY index.html /srv/www/default/index.html
-COPY Caddyfile /srv/config/Caddyfile
+COPY Caddyfile /srv/config/Caddyfile.d/Caddyfile
 
 COPY start.sh /usr/bin/start.sh
 RUN chmod +x /usr/bin/start.sh

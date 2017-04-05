@@ -7,4 +7,4 @@ chown -R caddy:caddy /home/caddy
 chown -R caddy:caddy /srv
 
 su-exec caddy:caddy sh -c "/usr/local/bin/caddy --version"
-su-exec caddy:caddy sh -c "/usr/local/bin/caddy -agree --conf /srv/config/Caddyfile"
+su-exec caddy:caddy sh -c "echo \"import /srv/config/Caddyfile.d/*\" | /usr/local/bin/caddy -agree -conf stdin"
