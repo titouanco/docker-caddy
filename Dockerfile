@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:3.6
 LABEL maintainer "Titouan Condé <eownis+docker@titouan.co>"
 LABEL org.label-schema.vcs-url="https://gitlab.com/eownis/docker-caddy"
 
@@ -18,7 +18,7 @@ RUN apk add --no-cache curl libcap su-exec tini $APK_PACKAGES \
     && tar xf /tmp/caddy/caddy.tar.gz -C /tmp/caddy \
     && mv /tmp/caddy/caddy /usr/local/bin/caddy \
     # Set permission to bind port 80 and 443
-    && setcap cap_net_bind_service=+ep /usr/local/bin/caddy \
+    && setcap cap_net_bind_service=+eip /usr/local/bin/caddy \
     # Cleaning
     && apk del libcap \
     && rm -rf /tmp/caddy
