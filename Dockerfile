@@ -1,13 +1,14 @@
 FROM alpine:3.6
 LABEL maintainer "Titouan Condé <eownis+docker@titouan.co>"
-LABEL org.label-schema.vcs-url="https://gitlab.com/eownis/docker-caddy"
+LABEL org.label-schema.name="Caddy"
+LABEL org.label-schema.vcs-url="https://git.titouan.co/eownis/docker-caddy"
 
 ARG CADDY_FEATURES
 ARG APK_PACKAGES
+ARG CADDY_SRC_URL="https://caddyserver.com/download/linux/amd64?plugins=$CADDY_FEATURES"
 
 ENV UID="991" \
     GID="991" \
-    CADDY_SRC_URL="https://caddyserver.com/download/linux/amd64?plugins=$CADDY_FEATURES" \
     CADDYPATH="/srv/config/ssl"
 
 RUN apk add --no-cache curl libcap su-exec tini $APK_PACKAGES \
