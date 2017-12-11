@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:3.7
 LABEL maintainer "Titouan Condé <eownis+docker@titouan.co>"
 LABEL org.label-schema.name="Caddy"
 LABEL org.label-schema.vcs-url="https://git.titouan.co/eownis/docker-caddy"

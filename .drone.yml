@@ -1,0 +1,17 @@
+pipeline:
+  docker:
+    image: plugins/docker
+    repo: eownis/caddy
+    storage_driver: overlay2
+    secrets: [ docker_username, docker_password ]
+    tags: ${TAG}
+    build_args:
+      - CADDY_FEATURES=${CADDY_FEATURES}
+      - APK_PACKAGES=${APK_PACKAGES}
+
+matrix:
+  include:
+    - TAG: latest
+    - TAG: git
+      CADDY_FEATURES: http.git
+      APK_PACKAGES: git
