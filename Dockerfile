@@ -5,7 +5,7 @@ LABEL org.label-schema.vcs-url="https://git.titouan.co/eownis/docker-caddy"
 
 ARG CADDY_FEATURES
 ARG APK_PACKAGES
-ARG CADDY_SRC_URL="https://caddyserver.com/download/linux/amd64?plugins=$CADDY_FEATURES"
+ARG CADDY_SRC_URL="https://caddyserver.com/download/linux/amd64?license=personal&plugins=$CADDY_FEATURES"
 
 ENV UID="991" \
     GID="991" \
