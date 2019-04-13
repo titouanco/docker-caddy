@@ -1,17 +1,41 @@
-pipeline:
-  docker:
-    image: plugins/docker
-    repo: eownis/caddy
-    storage_driver: overlay2
-    secrets: [ docker_username, docker_password ]
-    tags: ${TAG}
-    build_args:
-      - CADDY_FEATURES=${CADDY_FEATURES}
-      - APK_PACKAGES=${APK_PACKAGES}
+---
+kind: pipeline
+name: caddy
 
-matrix:
-  include:
-    - TAG: latest
-    - TAG: git
-      CADDY_FEATURES: http.git
-      APK_PACKAGES: git
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: docker
+  image: plugins/docker
+  settings:
+    password:
+      from_secret: docker_password
+    repo: titouanco/caddy
+    tags: latest
+    username:
+      from_secret: docker_username
+
+---
+kind: pipeline
+name: caddy-cache
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: docker
+  image: plugins/docker
+  settings:
+    build_args:
+    - CADDY_FEATURES=http.cache
+    password:
+      from_secret: docker_password
+    repo: titouanco/caddy
+    tags: cache
+    username:
+      from_secret: docker_username
+
+...
