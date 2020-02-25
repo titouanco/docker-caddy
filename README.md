@@ -5,5 +5,6 @@
 ## Tags available
 
 - Built every sunday at ~2:00 UTC:
-  - `latest` : Downloaded from Caddy [download page](https://caddyserver.com/v1/download) with every DNS providers and telemetry off
-  - `cache` : Downloaded from Caddy [download page](https://caddyserver.com/v1/download) with every DNS providers, telemetry off and the `http.cache` middleware
+  - `latest` : Download Caddy from the official [download page](https://caddyserver.com/v1/download) with telemetry off
+  - `dnsproviders` : Download Caddy from the official [download page](https://caddyserver.com/v1/download) with every DNS providers and telemetry off
+  - `cache` : Downloaded Caddy from the official [download page](https://caddyserver.com/v1/download) with telemetry off and the `http.cache` middleware
