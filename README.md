@@ -1,9 +1,9 @@
-# 🐳 titouanco/caddy
+# 🐳 `titouanco/caddy`
 
-[![build status](https://cd.code.titouan.co/api/badges/titouan/docker-caddy/status.svg)](https://cd.code.titouan.co/titouan/docker-caddy)
+[Caddy](https://caddyserver.com). Built by [GitHub Actions](https://github.com/titouanco/docker-caddy/actions) and pushed to [Docker Hub](https://hub.docker.com/r/titouanco/caddy/).
 
-[![](https://images.microbadger.com/badges/version/titouanco/caddy.svg)](https://microbadger.com/images/titouanco/caddy "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/titouanco/caddy.svg)](https://microbadger.com/images/titouanco/caddy "Get your own image badge on microbadger.com")
+## Tags available
 
-[![](https://images.microbadger.com/badges/version/titouanco/caddy:git.svg)](https://microbadger.com/images/titouanco/caddy:git "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/titouanco/caddy:git.svg)](https://microbadger.com/images/titouanco/caddy:git "Get your own image badge on microbadger.com")
-
-[Caddy](https://caddyserver.com). Built by [Drone](https://cd.code.titouan.co/titouan/docker-caddy) and pushed to [Docker Hub](https://hub.docker.com/r/titouanco/caddy/).
+- Built every sunday at ~2:00 UTC:
+  - `latest` : Downloaded from Caddy [download page](https://caddyserver.com/v1/download) with every DNS providers and telemetry off
+  - `cache` : Downloaded from Caddy [download page](https://caddyserver.com/v1/download) with every DNS providers, telemetry off and the `http.cache` middleware

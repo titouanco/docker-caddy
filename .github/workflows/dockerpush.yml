@@ -1,0 +1,42 @@
+name: Build & Push to Docker Registry
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '0 2 * * 0'
+  repository_dispatch:
+    types: run-dockerpush
+
+env:
+  DNS_PROVIDERS: tls.dns.auroradns,tls.dns.azure,tls.dns.cloudflare,tls.dns.cloudxns,tls.dns.digitalocean,tls.dns.dnsimple,tls.dns.dnsmadeeasy,tls.dns.dnspod,tls.dns.duckdns,tls.dns.dyn,tls.dns.exoscale,tls.dns.gandi,tls.dns.gandiv5,tls.dns.godaddy,tls.dns.googlecloud,tls.dns.lightsail,tls.dns.linode,tls.dns.namecheap,tls.dns.namedotcom,tls.dns.namesilo,tls.dns.ns1,tls.dns.otc,tls.dns.ovh,tls.dns.powerdns,tls.dns.rackspace,tls.dns.rfc2136,tls.dns.route53,tls.dns.vultr
+
+jobs:
+  caddy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build image
+        run: docker build . --build-arg CADDY_FEATURES=${{ env.DNS_PROVIDERS }} --tag ${{ secrets.DOCKER_IMAGE }}:latest
+
+      - name: Log into registry
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin ${{ secrets.DOCKER_REGISTRY }}
+
+      - name: Push image
+        run: docker push ${{ secrets.DOCKER_IMAGE }}:latest
+
+  caddy-cache:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build image
+        run: docker build . --build-arg CADDY_FEATURES=${{ env.DNS_PROVIDERS }},http.cache --tag ${{ secrets.DOCKER_IMAGE }}:cache
+
+      - name: Log into registry
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin ${{ secrets.DOCKER_REGISTRY }}
+
+      - name: Push image
+        run: docker push ${{ secrets.DOCKER_IMAGE }}:cache
