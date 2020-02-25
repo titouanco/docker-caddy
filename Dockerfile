@@ -1,7 +1,7 @@
 FROM alpine:3.11
 LABEL maintainer "Titouan Condé <hi+docker@titouan.co>"
 LABEL org.label-schema.name="Caddy"
-LABEL org.label-schema.vcs-url="https://code.titouan.co/titouan/docker-caddy"
+LABEL org.label-schema.vcs-url="https://github.com/titouanco/docker-caddy"
 
 ARG CADDY_FEATURES
 ARG APK_PACKAGES
